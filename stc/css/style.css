@@ -1,0 +1,56 @@
+@import url(http://fonts.googleapis.com/css?family=Reenie+Beanie);
+
+body {
+    background-color: #272822;
+    color: #FFFFFF;
+    /*font-family: "Reenie Beanie";*/
+}
+.keyword {
+    color: #E62678;
+}
+
+.comment {
+    color: #75715E;
+}
+
+.parameter {
+    color: #D5911F;
+}
+
+.builtinfunction {
+    color: #60C9DC;
+}
+
+.function {
+    color: #A6E22E;
+}
+
+.string  {
+    color: #E6DB74;
+}
+
+a {
+   color: #FFFFFF;
+   text-decoration: none;
+}
+a:hover {
+   text-decoration: underline;
+}
+
+.paramvalue {
+    color: #AE81FF;
+}
+
+.one {
+    position: relative;
+    margin-left: 2%;
+}
+
+.two {
+    position: relative;
+    margin-left: 4%;
+}
+
+.message {
+    position: relative;
+    margin-bottom: 2%;

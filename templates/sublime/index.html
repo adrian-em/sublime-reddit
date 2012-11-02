@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load timetags %}
+{% block content %}
+	<span class="builtinfunction">class</span> <span>WhatsHot</span>(<span class="function">object</span>):
+		{% for r in c.data.children %}
+			<div class="message">
+				<div class="one">
+					<span class="comment"># {{r.data.created|print_timestamp }}</span><br />
+					<span class="builtinfunction">def</span>&nbsp;
+					<span class="function">_{{ r.data.title|truncatewords:3|slugify }}</span>
+					(
+						<span class="parameter">self</span>,
+						<span class="parameter"> category</span><span class="keyword">=</span><span class="string">"{{r.data.subreddit}}"</span>,
+						<span class="parameter">adult</span><span class="keyword">=</span><span class="paramvalue">{{r.data.over_18}}</span>, 
+						<span class="parameter">author</span><span class="keyword">=</span><span class="string">"{{r.data.author}}"</span>
+					):
+				</div>
+				<div class="two">
+					full_title = <span class="string">"{{ r.data.title }}"</span><br />
+					url = <span class="string">"<a class="string" href="{{ r.data.url }}">{{ r.data.url }}</a>"</span><br />
+					<br />
+					votes = {<span class="string">"up"</span>: <span class="paramvalue">{{r.data.ups }}</span>, 
+						<span class="string"> "down"</span>:<span class="paramvalue">{{r.data.downs}}</span>}<br />
+					score = <span class="paramvalue">{{r.data.score}}</span><br />
+					<br />
+					<span class="function">load_comments</span>(<span class="paramvalue">{{r.data.num_comments}}</span>)
+				</div>
+
+
+
+				<div class="two">
+					<span class="keyword">return </span> <a href="http://www.stackoverflow.com">to_work</a>
+				</div>
+			</div>
+{% endfor %}
+
+
+{% endblock %}
