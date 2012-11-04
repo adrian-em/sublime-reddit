@@ -2,6 +2,8 @@ from django.conf import settings
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
 import requests
+# TODO: Docstrings
+# TODO: Settings link
 
 
 def main_page(request):
@@ -12,8 +14,12 @@ def main_page(request):
     return render_to_response("sublime/index.html", {'c': c, 'app_name': settings.APPLICATION_NAME, 'name': 'home'})
 
 
-def comments_page(request, commentsuri):
-    pass
+def comments_page(request, r, subreddit, comments, name, title):
+    url = "http://www.reddit.com/r/" + subreddit + "/comments/" + name + "/" + title + "/.json"
+    print url
+    w = requests.get(url)
+    c = w.json
+    return render_to_response("sublime/comments.html", {'c': c, 'app_name': settings.APPLICATION_NAME, 'name': title})
 
 
 def user_page(request, useruri):

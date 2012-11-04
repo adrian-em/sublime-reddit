@@ -25,12 +25,12 @@ body {
     color: #A6E22E;
 }
 
-.string  {
+.string,a  {
     color: #E6DB74;
 }
 
 a {
-   color: #FFFFFF;
+   /*color: #FFFFFF;*/
    text-decoration: none;
 }
 a:hover {
@@ -58,4 +58,8 @@ a:hover {
 
 .selftext {
     width: 75%;
+}
+
+.indent {
+    margin-left: 1%;
 }

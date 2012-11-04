@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load timetags %}
+{% block content %}
+	<div class="message" style="margin-top: -2%;">
+		<span class="keyword">import </span> settings <br />
+		<span class="keyword">from </span> reddit.post <span class="keyword"> import </span> {{ name }} <br />
+	</div>
+	{% with c|first as post %}
+	{% with post.data.children|first as postdata %}
+	<span class="builtinfunction">class </span><span>{{ postdata.data.title }}</span>(<span class="function">object</span>):
+	<div class="one">
+		<span class="comment"># {{postdata.data.created|print_timestamp }}</span><br />
+		<span class="builtinfunction">def</span>&nbsp;
+		<span class="function">__init__</span>
+		(
+			<span class="parameter">self</span>,
+			<span class="parameter">category</span><span class="keyword">=</span><span class="string"><a class="string" href="/subreddit/{{postdata.data.subreddit}}">"{{postdata.data.subreddit}}"</a></span>,
+			<span class="parameter">adult</span><span class="keyword">=</span><span class="paramvalue">{{postdata.data.over_18}}</span>, 
+			<span class="parameter">author</span><span class="keyword">=</span><span class="string">"{{postdata.data.author}}"</span>
+		):
+	</div>
+
+	<div class="two">
+		full_title = <span class="string">"{{ postdata.data.title }}"</span><br />
+		{% if postdata.data.selftext|length %}
+			<a class="function showselftext">show_self_text</a>
+			<div class="string selftext">
+				"""<br />
+				{{ postdata.data.selftext }}<br />
+				"""<br />
+			</div>
+		{% else %}
+			url = <span class="string">"<a class="string" href="{{ postdata.data.url }}">{{ postdata.data.url }}</a>"</span><br />
+		{% endif %}
+		<br />
+		votes = {<span class="string">"up"</span>: <span class="paramvalue">{{postdata.data.ups }}</span>, 
+		<span class="string"> "down"</span>:<span class="paramvalue">{{postdata.data.downs}}</span>}<br />
+		score = <span class="paramvalue">{{postdata.data.score}}</span><br />
+		<br />
+
+	</div>
+	<div class="one">
+		<span class="builtinfunction">def</span>&nbsp;
+		<span class="function">load_comments</span>
+		(
+			<span class="paramvalue">{{postdata.data.num_comments}}</span>
+		):
+	</div>
+	{% endwith %}
+	{% endwith %}
+
+	<div class="two">
+	{% with c|last as comments %}
+		{% for comment in comments.data.children %}
+			{% if comment.data.author|length %}
+				<span class="keyword">if </span> <span>ups </span> <span class="keyword"> == </span> <span class="paramvalue"> {{comment.data.ups}} </span>
+				<span class="keyword"> and </span>
+				<span>downs </span> <span class="keyword"> == </span> <span class="paramvalue"> {{comment.data.downs}}</span>:<br />
+				<div class="indent">
+					<span>author = {{ comment.data.author }}</span><br />
+					<span class="string">"""{{ comment.data.body}}"""</span>
+					<br />
+					<!-- FIRST REPLY -->
+					{% if comment.data.replies %}
+						{% for reply in comment.data.replies.data.children %}
+							{% if reply.data.author|length %}
+								<span class="keyword">else if </span> <span>ups </span> <span class="keyword"> == </span> <span class="paramvalue"> {{reply.data.ups}} </span>
+								<span class="keyword"> and </span>
+								<span>downs </span> <span class="keyword"> == </span> <span class="paramvalue"> {{reply.data.downs}}</span>:<br />
+								<div class="indent">
+									<span>author = {{ reply.data.author }}</span><br />
+									<span class="string">"""{{ reply.data.body}}"""</span>
+									<br />
+									<!-- SECOND REPLY -->
+									{% if reply.data.replies %}
+										{% for reply1 in reply.data.replies.data.children %}
+											{% if reply1.data.author|length %}
+												<span class="keyword">else if </span> <span>ups </span> <span class="keyword"> == </span> <span class="paramvalue"> {{reply1.data.ups}} </span>
+												<span class="keyword"> and </span>
+												<span>downs </span> <span class="keyword"> == </span> <span class="paramvalue"> {{reply1.data.downs}}</span>:<br />
+												<div class="indent">
+													<span>author = {{ reply1.data.author }}</span><br />
+													<span class="string">"""{{ reply1.data.body}}"""</span>
+													<br />
+													<!-- THIRD REPLY -->
+													{% if reply1.data.replies %}
+														{% for reply2 in reply1.data.replies.data.children %}
+															{% if reply2.data.author|length %}
+																<span class="keyword">else if </span> <span>ups </span> <span class="keyword"> == </span> <span class="paramvalue"> {{reply2.data.ups}} </span>
+																<span class="keyword"> and </span>
+																<span>downs </span> <span class="keyword"> == </span> <span class="paramvalue"> {{reply2.data.downs}}</span>:<br />
+																<div class="indent">
+																	<span>author = {{ reply2.data.author }}</span><br />
+																	<span class="string">"""{{ reply2.data.body}}"""</span>
+																	<br />
+																	{% if reply2.data.replies %}
+																		[]
+																	{% endif %}
+																</div>
+															{% endif %}
+														{% endfor %}
+													{% endif %}
+												</div>
+											{% endif %}
+										{% endfor %}
+									{% endif %}
+								</div>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				</div>
+			{% endif %}			
+		{% endfor %}
+	</div>
+{% endwith %}
+
+{% endblock %}
