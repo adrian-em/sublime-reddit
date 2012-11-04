@@ -54,3 +54,8 @@ a:hover {
 .message {
     position: relative;
     margin-bottom: 2%;
+}
+
+.selftext {
+    width: 75%;
+}

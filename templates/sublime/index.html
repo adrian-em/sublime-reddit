@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load timetags %}
 {% block content %}
+	<div class="message" style="margin-top: -2%;">
+		<span class="keyword">import </span> settings <br />
+		<span class="keyword">from </span> reddit <span class="keyword"> import </span> {{ name }} <br />
+	</div>
+
 	<span class="builtinfunction">class</span> <span>WhatsHot</span>(<span class="function">object</span>):
 		{% for r in c.data.children %}
 			<div class="message">
@@ -10,14 +15,23 @@
 					<span class="function">_{{ r.data.title|truncatewords:3|slugify }}</span>
 					(
 						<span class="parameter">self</span>,
-						<span class="parameter"> category</span><span class="keyword">=</span><span class="string">"{{r.data.subreddit}}"</span>,
+						<span class="parameter"> category</span><span class="keyword">=</span><span class="string"><a class="string" href="/subreddit/{{r.data.subreddit}}">"{{r.data.subreddit}}"</a></span>,
 						<span class="parameter">adult</span><span class="keyword">=</span><span class="paramvalue">{{r.data.over_18}}</span>, 
 						<span class="parameter">author</span><span class="keyword">=</span><span class="string">"{{r.data.author}}"</span>
 					):
 				</div>
 				<div class="two">
 					full_title = <span class="string">"{{ r.data.title }}"</span><br />
-					url = <span class="string">"<a class="string" href="{{ r.data.url }}">{{ r.data.url }}</a>"</span><br />
+					{% if r.data.selftext|length %}
+						<a class="function showselftext">show_self_text</a>
+						<div class="string selftext">
+							"""<br />
+							{{ r.data.selftext }}<br />
+							"""<br />
+						</div>
+					{% else %}
+						url = <span class="string">"<a class="string" href="{{ r.data.url }}">{{ r.data.url }}</a>"</span><br />
+					{% endif %}
 					<br />
 					votes = {<span class="string">"up"</span>: <span class="paramvalue">{{r.data.ups }}</span>, 
 						<span class="string"> "down"</span>:<span class="paramvalue">{{r.data.downs}}</span>}<br />
@@ -33,6 +47,10 @@
 				</div>
 			</div>
 {% endfor %}
+
+<div class="one">
+	<a href="/page/{{c.data.after}}"><span class="function">next_page</span>()</a>
+</div>
 
 
 {% endblock %}
