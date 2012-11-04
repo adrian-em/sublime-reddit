@@ -7,7 +7,7 @@
 	</div>
 	{% with c|first as post %}
 	{% with post.data.children|first as postdata %}
-	<span class="builtinfunction">class </span><span>{{ postdata.data.title }}</span>(<span class="function">object</span>):
+	<span class="builtinfunction">class </span><span>{{ postdata.data.title|title|cut:" " }}</span>(<span class="function">object</span>):
 	<div class="one">
 		<span class="comment"># {{postdata.data.created|print_timestamp }}</span><br />
 		<span class="builtinfunction">def</span>&nbsp;
@@ -57,7 +57,8 @@
 				<span class="keyword"> and </span>
 				<span>downs </span> <span class="keyword"> == </span> <span class="paramvalue"> {{comment.data.downs}}</span>:<br />
 				<div class="indent">
-					<span>author = {{ comment.data.author }}</span><br />
+					<span>date = </span><span class="string">"{{ comment.data.created|print_timestamp }}"</span><br />
+					<span>author = </span><span class="string">"{{ comment.data.author }}"</span><br />
 					<span class="string">"""{{ comment.data.body}}"""</span>
 					<br />
 					<!-- FIRST REPLY -->
@@ -68,7 +69,8 @@
 								<span class="keyword"> and </span>
 								<span>downs </span> <span class="keyword"> == </span> <span class="paramvalue"> {{reply.data.downs}}</span>:<br />
 								<div class="indent">
-									<span>author = {{ reply.data.author }}</span><br />
+									<span>date = </span><span class="string">"{{ reply.data.created|print_timestamp }}"</span><br />
+									<span>author = </span><span class="string">"{{ reply.data.author }}"</span><br />
 									<span class="string">"""{{ reply.data.body}}"""</span>
 									<br />
 									<!-- SECOND REPLY -->
@@ -79,7 +81,8 @@
 												<span class="keyword"> and </span>
 												<span>downs </span> <span class="keyword"> == </span> <span class="paramvalue"> {{reply1.data.downs}}</span>:<br />
 												<div class="indent">
-													<span>author = {{ reply1.data.author }}</span><br />
+													<span>date = </span><span class="string">"{{ reply1.data.created|print_timestamp }}"</span><br />
+													<span>author = </span><span class="string">"{{ reply1.data.author }}"</span><br />
 													<span class="string">"""{{ reply1.data.body}}"""</span>
 													<br />
 													<!-- THIRD REPLY -->
@@ -90,7 +93,8 @@
 																<span class="keyword"> and </span>
 																<span>downs </span> <span class="keyword"> == </span> <span class="paramvalue"> {{reply2.data.downs}}</span>:<br />
 																<div class="indent">
-																	<span>author = {{ reply2.data.author }}</span><br />
+																	<span>date = </span><span class="string">"{{ reply2.data.created|print_timestamp }}"</span><br />
+																	<span>author = </span><span class="string">"{{ reply2.data.author }}"</span><br />
 																	<span class="string">"""{{ reply2.data.body}}"""</span>
 																	<br />
 																	{% if reply2.data.replies %}
