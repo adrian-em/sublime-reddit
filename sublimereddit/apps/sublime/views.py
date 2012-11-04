@@ -40,3 +40,7 @@ def reddit_next_page(request, after):
     w = requests.get(url)
     c = w.json
     return render_to_response("sublime/index.html", {'c': c, 'app_name': settings.APPLICATION_NAME, 'name': after})
+
+
+def settings_page(request):
+    return render_to_response("sublime/settings.html", {'app_name': settings.APPLICATION_NAME})

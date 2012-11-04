@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^page/(?P<after>[\w|\W]+)/$', 'sublimereddit.apps.sublime.views.reddit_next_page', name="nextpage"),
     url(r'^comments/(?P<r>[\w|\W]+)/(?P<subreddit>[\w|\W]+)/(?P<comments>[\w|\W]+)/(?P<name>[\w|\W]+)/(?P<title>[\w|\W]+)/$',
     'sublimereddit.apps.sublime.views.comments_page', name="comments"),
+    url(r'^settings/$', 'sublimereddit.apps.sublime.views.settings_page', name="settings"),
     # url(r'^sublimereddit/', include('sublimereddit.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

@@ -63,3 +63,9 @@ a:hover {
 .indent {
     margin-left: 1%;
 }
+
+.settings {
+    font-size: 28pt;
+    margin-left: 15%;
+    font-family: "Reenie Beanie";
+}
