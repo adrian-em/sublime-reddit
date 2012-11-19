@@ -2,7 +2,7 @@
 @font-face
 {
 font-family: Adobe;
-src: url('/static/fonts/SourceCodePro-Regular.ttf')
+src: url('../SourceCodePro-Regular.ttf')
 }
 
 body {
@@ -10,7 +10,6 @@ body {
     color: #FFFFFF;
     /*font-family: "Reenie Beanie";*/
     font-family: "Adobe";
-    font-size: 10.5pt;
 }
 .keyword {
     color: #E62678;

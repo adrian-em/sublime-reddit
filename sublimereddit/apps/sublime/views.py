@@ -3,7 +3,6 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse
 import requests
 # TODO: Docstrings
-# TODO: Settings link
 
 
 def main_page(request):
