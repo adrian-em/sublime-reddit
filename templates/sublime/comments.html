@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load timetags %}
+{% load functionify %}
 {% block content %}
 	<div class="message" style="margin-top: -2%;">
-		<span class="keyword">import </span> <a href="/settings/">settings</a> <br />
+		<span class="keyword">from </span> <span>django.conf</span><span class="keyword"> import </span> <a href="/settings/">settings</a> <br />
 		<span class="keyword">from </span> reddit.post <span class="keyword"> import </span> {{ name }} <br />
 	</div>
 	{% with c|first as post %}
@@ -15,7 +16,7 @@
 		(
 			<span class="parameter">self</span>,
 			<span class="parameter">category</span><span class="keyword">=</span><span class="string"><a class="string" href="/subreddit/{{postdata.data.subreddit}}">"{{postdata.data.subreddit}}"</a></span>,
-			<span class="parameter">adult</span><span class="keyword">=</span><span class="paramvalue">{{postdata.data.over_18}}</span>, 
+			<span class="parameter">adult</span><span class="keyword">=</span><span class="paramvalue">{{postdata.data.over_18}}</span>,
 			<span class="parameter">author</span><span class="keyword">=</span><span class="string">"{{postdata.data.author}}"</span>
 		):
 	</div>
@@ -33,7 +34,7 @@
 			url = <span class="string">"<a class="string" href="{{ postdata.data.url }}">{{ postdata.data.url }}</a>"</span><br />
 		{% endif %}
 		<br />
-		votes = {<span class="string">"up"</span>: <span class="paramvalue">{{postdata.data.ups }}</span>, 
+		votes = {<span class="string">"up"</span>: <span class="paramvalue">{{postdata.data.ups }}</span>,
 		<span class="string"> "down"</span>:<span class="paramvalue">{{postdata.data.downs}}</span>}<br />
 		score = <span class="paramvalue">{{postdata.data.score}}</span><br />
 		<br />
@@ -113,7 +114,7 @@
 						{% endfor %}
 					{% endif %}
 				</div>
-			{% endif %}			
+			{% endif %}
 		{% endfor %}
 	</div>
 {% endwith %}

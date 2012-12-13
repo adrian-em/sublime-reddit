@@ -1,24 +1,32 @@
 from django.conf import settings
 from django.shortcuts import render_to_response
-from django.http import HttpResponse
 import requests
-# TODO: Docstrings
 
 
 def main_page(request):
 
+    """
+    Index page
+    """
     w = requests.get("http://www.reddit.com/.json")
     c = w.json
     print c
-    return render_to_response("sublime/index.html", {'c': c, 'app_name': settings.APPLICATION_NAME, 'name': 'home'})
+    return render_to_response("sublime/index.html", {'c': c,
+        'app_name': settings.APPLICATION_NAME, 'name': 'home'})
 
 
 def comments_page(request, r, subreddit, comments, name, title):
-    url = "http://www.reddit.com/r/" + subreddit + "/comments/" + name + "/" + title + "/.json"
+
+    """
+    Load comments
+    """
+    url = "http://www.reddit.com/r/" + subreddit + "/comments/" \
+        + name + "/" + title + "/.json"
     print url
     w = requests.get(url)
     c = w.json
-    return render_to_response("sublime/comments.html", {'c': c, 'app_name': settings.APPLICATION_NAME, 'name': title})
+    return render_to_response("sublime/comments.html", {'c': c,
+        'app_name': settings.APPLICATION_NAME, 'name': title})
 
 
 def user_page(request, useruri):
@@ -26,20 +34,35 @@ def user_page(request, useruri):
 
 
 def subreddit_page(request, subreddituri):
+
+    """
+    Load specific subreddit
+    """
     url = "http://www.reddit.com/r/" + subreddituri + "/.json"
     print url
     w = requests.get(url)
     c = w.json
-    return render_to_response("sublime/index.html", {'c': c, 'app_name': settings.APPLICATION_NAME, 'name': subreddituri})
+    return render_to_response("sublime/index.html", {'c': c,
+        'app_name': settings.APPLICATION_NAME, 'name': subreddituri})
 
 
 def reddit_next_page(request, after):
+
+    """
+    Load next page
+    """
     url = "http://www.reddit.com/.json?after=" + after
     print url
     w = requests.get(url)
     c = w.json
-    return render_to_response("sublime/index.html", {'c': c, 'app_name': settings.APPLICATION_NAME, 'name': after})
+    return render_to_response("sublime/index.html", {'c': c,
+        'app_name': settings.APPLICATION_NAME, 'name': after})
 
 
 def settings_page(request):
-    return render_to_response("sublime/settings.html", {'app_name': settings.APPLICATION_NAME})
+
+    """
+    Info about app
+    """
+    return render_to_response("sublime/settings.html",
+        {'app_name': settings.APPLICATION_NAME})
