@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Reenie+Beanie);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono);
 @font-face
 {
 font-family: Adobe;
@@ -8,9 +9,8 @@ src: url('/static/fonts/SourceCodePro-Regular.ttf')
 body {
     background-color: #272822;
     color: #FFFFFF;
-    /*font-family: "Reenie Beanie";*/
-    font-family: "Adobe";
-    font-size: 10.5pt;
+    font-family: "Ubuntu Mono";
+    font-size: 13.0pt;
 }
 .keyword {
     color: #E62678;
