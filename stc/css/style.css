@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Reenie+Beanie);
+/*@import url(http://fonts.googleapis.com/css?family=Reenie+Beanie);*/
 @import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono);
 @font-face
 {
@@ -79,7 +79,9 @@ a:hover {
 }
 
 .settings {
-    font-size: 28pt;
-    margin-left: 15%;
-    font-family: "Reenie Beanie";
+    font-size: 20pt;
+    margin-left: 20%;
+    font-family: "Adobe";
+
+    /*font-family: "Reenie Beanie";*/
 }
