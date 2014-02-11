@@ -10,7 +10,8 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
-
+ALLOWED_HOSTS = ['www.sublimereddit.com', 'sublimereddit.aesptux.com',
+                 '162.243.65.91']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
