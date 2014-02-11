@@ -6,6 +6,13 @@ font-family: Adobe;
 src: url('/static/fonts/SourceCodePro-Regular.ttf')
 }
 
+::selection {
+    background: rgba(62, 61, 50, 0.5);
+}
+::-moz-selection {
+    background: rgba(62, 61, 50, 0.5);
+}
+
 body {
     background-color: #272822;
     color: #FFFFFF;
