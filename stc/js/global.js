@@ -14,13 +14,18 @@
 				var next = find_comment('next');
 			}
 
-			// Get top offset of found comment
-			var offset = next.offset().top;
+			// Did we find a comment?
+			if(typeof next == 'object') {
 
-			// Scroll to it
-			$('html, body').stop().animate({
-				scrollTop: offset - 17
-			}, 200);
+				// Get top offset of found comment
+				var offset = next.offset().top;
+
+				// Scroll to it
+				$('html, body').stop().animate({
+					scrollTop: offset - 17
+				}, 200);
+			}
+
 		});
 	}
 
