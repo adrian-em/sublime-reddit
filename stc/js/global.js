@@ -3,7 +3,6 @@
 	if(location.href.match(/comments\/r\//)) {
 
 		$(document).on('keydown', function(e) {
-			e.preventDefault();
 				
 			// Up key, get previous root comment
 			if(e.which == 38) {
@@ -16,6 +15,7 @@
 
 			// Did we find a comment?
 			if(typeof next == 'object') {
+				e.preventDefault();
 
 				// Get top offset of found comment
 				var offset = next.offset().top;
